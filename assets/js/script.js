@@ -1,27 +1,32 @@
 // function to insert data
 function insertData() {
-    // get form values
-    var title = document.getElementById('titleInput').value;
-    var paragraph = document.getElementById('paragraphInput').value;
-    var image = document.getElementById('imageInput').files[0];
+    try {
+        // get form values
+        var title = document.getElementById('titleInput').value;
+        var paragraph = document.getElementById('paragraphInput').value;
+        var image = document.getElementById('imageInput').files[0];
 
-    // create object with form data
-    var newData = {
-        title : title,
-        paragraph : paragraph,
-        // create url for the upload image
-        imageUrl : URL.createObjectURL(image)
+        // Create object with form data
+        var newData = {
+            title : title,
+            paragraph : paragraph,
+            // Create url for the upload image
+            imageUrl : URL.createObjectURL(image)
+        }
+
+        // Get existing Data from localStorage or initialize empty Array
+        var storedData = JSON.parse(localStorage.getItem('formDataMap')) || [];
+
+        // Add new Data to the Array
+        storedData.push(newData);
+
+        // Save Data to localStorage
+        localStorage.setItem('formDataMap',JSON.stringify(storedData));
+
+        // Clear form fileds
+        document.getElementById('myForm').reset();
+    } catch (error) {
+        console.error("Error has been detected.",error);
+        alert("Error has been detected.",error);
     }
-
-    // get existing data from localStorage or initialize empty array
-    var storedData = JSON.parse(localStorage.getItem('formDataMap')) || [];
-
-    // add new data to the Array
-    storedData.push(newData);
-
-    // Save Data to localStorage
-    localStorage.setItem('formDataMap',JSON.stringify(storedData));
-
-    // clear form fileds
-    document.getElementById('myForm').reset();
 }
