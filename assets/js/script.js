@@ -30,3 +30,34 @@ function insertData() {
         alert("Error has been detected.",error);
     }
 }
+
+// Function to read Data
+function readData() {
+    // Retrive data from localStorage or initialize empty array
+    var storedData = JSON.parse(localStorage.getItem('formDataMap')) || [];
+
+    // Display data
+    var displayContainer = document.getElementById('dataDisplay');
+    displayContainer.innerHTML = '';
+
+    // Use map to iterate over storedData and generate HTML for each item
+    storedData.map(function(item, index) {
+        // Create elements to display data
+        var container = document.createElement('div');
+        var title = document.createElement('h3');
+        var paragraph = document.createElement('p');
+        var image = document.createElement('img');
+
+        title.textContent = item.title;
+        paragraph.textContent = item.paragraph;
+        image.src = item.imageUrl;
+        image.alt = "Image";
+
+        // Append elements to container
+        container.appendChild(title);
+        container.appendChild(paragraph);
+        container.appendChild(image);
+
+        displayContainer.appendChild(container);
+    });
+}
