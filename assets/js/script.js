@@ -30,3 +30,11 @@ function insertData() {
         alert("Error has been detected.",error);
     }
 }
+
+// Function to read Data
+function readData() {
+    // Retrive data from localStorage or initialize empty array
+    var storedData = JSON.parse(localStorage.getItem('formDataMap')) || [];
+
+    
+}
