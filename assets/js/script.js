@@ -36,5 +36,9 @@ function readData() {
     // Retrive data from localStorage or initialize empty array
     var storedData = JSON.parse(localStorage.getItem('formDataMap')) || [];
 
+    // Display data
+    var displayContainer = document.getElementById('dataDisplay');
+    displayContainer.innerHTML = '';
+
     
 }
